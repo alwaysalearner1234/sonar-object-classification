@@ -1,0 +1,133 @@
+🌊 Sonar Object Classification (Mine vs Rock)
+
+An intelligent Machine Learning project that classifies sonar signals as Mine or Rock using Random Forest — with a clean and interactive Streamlit web app for real-time predictions.
+
+🧠 Overview
+
+Underwater sonar signals are often used to detect and differentiate between rocks and metallic objects such as naval mines.
+This project analyzes sonar returns from 60 frequency bands and predicts whether the object detected is a Mine (M) or a Rock (R) using supervised learning.
+
+The goal is to create an accurate, interpretable, and deployable model for Sonar Object Classification.
+
+📂 Dataset
+
+Source: UCI Machine Learning Repository
+
+Instances: 208
+
+Features: 60 continuous numeric values (energy values at different frequencies)
+
+Target Labels:
+
+M → Mine
+
+R → Rock
+
+⚙️ Tech Stack
+Category	Tools & Libraries
+Language	Python 🐍
+Data Processing	Pandas, NumPy
+Modeling	Scikit-learn (RandomForestClassifier)
+Visualization	Matplotlib, Seaborn
+Deployment	Streamlit
+Model Storage	Joblib
+🚀 Project Workflow
+1️⃣ Data Preprocessing
+
+Loaded sonar dataset and explored data structure.
+
+Encoded target labels (M and R) to numeric values.
+
+Standardized the 60 features for uniform scaling.
+
+Split dataset into 80% training and 20% testing.
+
+2️⃣ Model Training
+
+Trained multiple models and compared performance.
+The Random Forest Classifier performed best with:
+
+Excellent generalization
+
+Low variance
+
+Robust to noise and overfitting
+
+from sklearn.ensemble import RandomForestClassifier
+
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+3️⃣ Model Evaluation
+
+Evaluated accuracy, precision, recall, and confusion matrix.
+
+Model	Accuracy
+Logistic Regression	83.2%
+K-Nearest Neighbors	86.4%
+SVM	88.6%
+Random Forest	91.3% ✅
+💾 Model Saving
+
+Saved the trained Random Forest model using Joblib:
+
+import joblib
+joblib.dump(model, 'sonar_model.pkl')
+
+
+Load later for prediction:
+
+model = joblib.load('sonar_model.pkl')
+
+🖥️ Streamlit Web App
+▶ Run the app locally
+streamlit run streamlit_app.py
+
+📋 App Features
+
+✅ User-friendly input form (manual or file upload)
+✅ Predicts instantly: Mine or Rock
+✅ Displays confidence probability
+✅ Visual feedback with color-coded results
+✅ Model accuracy displayed on sidebar
+
+🧩 Sample Prediction Code
+import numpy as np
+import joblib
+
+model = joblib.load('sonar_model.pkl')
+
+# Example input (60 feature values)
+sample_input = np.array([[0.02, 0.03, 0.05, ... , 0.09]])
+prediction = model.predict(sample_input)
+
+if prediction[0] == 1:
+    print("Mine Detected 💣")
+else:
+    print("Rock Detected 🪨")
+
+
+📚 References
+
+UCI Sonar Dataset
+
+Scikit-learn Documentation
+
+Streamlit Docs
+
+✨ Future Enhancements
+
+Integrate Deep Learning (ANN/CNN) models.
+
+Add hyperparameter tuning with GridSearchCV.
+
+Include feature importance visualization.
+
+Deploy app publicly via Streamlit Cloud / Render / AWS.
+
+👨‍💻 Author
+
+Lidiya
+💼 https://www.linkedin.com/in/d-lidiya-68388a331/
+ | 🧠 https://github.com/alwaysalearner1234
+ | ✉️ duddekuntalidiya@gmail.com
